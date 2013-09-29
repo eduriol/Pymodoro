@@ -9,8 +9,7 @@ class Pomodoro(models.Model):
     end_time = models.DateTimeField("end time")
 
     def __unicode__(self):
-        name = "(%s, %s, %s)" % (self.tag, self.init_time, self.end_time)
-        return name
+        return '%s, from %s to %s in %s' % (self.user.username, self.init_time(), self.end_time, self.tag)
 
     def init_time(self):
         return self.end_time - datetime.timedelta(minutes=25)
