@@ -15,4 +15,4 @@ class Pomodoro(models.Model):
         return self.end_time - datetime.timedelta(minutes=25)
 
     def is_from_today(self):
-        return self.end_time.day == datetime.datetime.today()
+        return self.end_time.day == datetime.date.today()
