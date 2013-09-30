@@ -15,4 +15,7 @@ class Pomodoro(models.Model):
         return self.end_time - datetime.timedelta(minutes=25)
 
     def is_from_today(self):
-        return self.end_time.day == datetime.date.today()
+        return self.end_time.date() == datetime.date.today()
+    is_from_today.admin_order_field = 'end_time'
+    is_from_today.boolean = True
+    is_from_today.short_description = 'is from today?'
