@@ -2,6 +2,8 @@
 
 <form action="{% url 'Pymodoro:start' %}" method="post">
 {% csrf_token %}
+<label for="tag">tag:</label>
+<input type="text" name="tag" id="tag" />
 <input type="submit" value="Start pomodoro" />
 </form>
 
