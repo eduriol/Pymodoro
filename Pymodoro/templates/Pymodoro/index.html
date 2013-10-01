@@ -1,0 +1,9 @@
+{% if latest_pomodoro_list %}
+    <ul>
+    {% for pomodoro in latest_pomodoro_list %}
+        <li><a href="/pymodoro/{{ pomodoro.id }}/">{{ pomodoro.__unicode__ }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pomodoros are available.</p>
+{% endif %}
