@@ -1,7 +1,14 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'Pymodoro:start' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Start pomodoro" />
+</form>
+
 {% if latest_pomodoro_list %}
     <ul>
     {% for pomodoro in latest_pomodoro_list %}
-        <li><a href="/pymodoro/{{ pomodoro.id }}/">{{ pomodoro.__unicode__ }}</a></li>
+        <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
