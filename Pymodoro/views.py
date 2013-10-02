@@ -4,10 +4,10 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 import time
 
-from Pymodoro.models import Pomodoro
+from Pymodoro.models import Pomodoro, PomodoroManager
 
 def index(request):
-    latest_pomodoro_list = Pomodoro.objects.filter(is_from_today=True)
+    latest_pomodoro_list = PomodoroManager.are_from_today()
     context = {'latest_pomodoro_list': latest_pomodoro_list}
     return render(request, 'Pymodoro/index.html', context)
 

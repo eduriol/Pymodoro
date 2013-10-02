@@ -19,3 +19,11 @@ class Pomodoro(models.Model):
     is_from_today.admin_order_field = 'end_time'
     is_from_today.boolean = True
     is_from_today.short_description = 'is from today?'
+
+class PomodoroManager(models.Manager):
+    def are_from_today(self):
+        result_list = []
+        for p in Pomodoro.objects.all():
+            if p.is_from_today():
+                result_list.append(p)
+        return result_list
