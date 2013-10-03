@@ -8,6 +8,9 @@
 </form>
 
 {% if today_pomodoro_list %}
+    <p>
+        You have completed {{ today_pomodoro_list|length }} pomodoro{{ today_pomodoro_list|length|pluralize }} so far today.
+    </p>
     <ul>
     {% for pomodoro in today_pomodoro_list %}
         <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro }}</a></li>
