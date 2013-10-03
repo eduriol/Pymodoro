@@ -7,12 +7,12 @@
 <input type="submit" value="Start pomodoro" />
 </form>
 
-{% if latest_pomodoro_list %}
+{% if today_pomodoro_list %}
     <ul>
-    {% for pomodoro in latest_pomodoro_list %}
+    {% for pomodoro in today_pomodoro_list %}
         <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No pomodoros are available.</p>
+    <p>No pomodoros created today.</p>
 {% endif %}

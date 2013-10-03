@@ -2,18 +2,23 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils import timezone
+from django.views import generic
 import time
 
 from Pymodoro.models import Pomodoro, PomodoroManager
 
-def index(request):
-    latest_pomodoro_list = PomodoroManager.are_from_today()
-    context = {'latest_pomodoro_list': latest_pomodoro_list}
-    return render(request, 'Pymodoro/index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'Pymodoro/index.html'
+    context_object_name = 'today_pomodoro_list'
 
-def detail(request, pomodoro_id):
-    pomodoro = get_object_or_404(Pomodoro, pk=pomodoro_id)
-    return render(request, 'Pymodoro/detail.html', {'pomodoro': pomodoro})
+    def get_queryset(self):
+        # Return the pomodoros published today.
+        pm = PomodoroManager()
+        return pm.are_from_today()
+
+class DetailView(generic.DetailView):
+    model = Pomodoro
+    template_name = 'Pomodoro/detail.html'
 
 def start(request):
     if (request.user.is_authenticated()):

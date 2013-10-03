@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 import datetime
+from operator import attrgetter
 
 class Pomodoro(models.Model):
     user = models.ForeignKey(User)
@@ -26,4 +27,4 @@ class PomodoroManager(models.Manager):
         for p in Pomodoro.objects.all():
             if p.is_from_today():
                 result_list.append(p)
-        return result_list
+        return sorted(result_list, key=attrgetter('end_time'), reverse=True)
