@@ -14,11 +14,20 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         # Return the pomodoros published today.
         pm = PomodoroManager()
-        return pm.are_from_today()
+        return pm.are_from_today(self.request.user)
 
 class DetailView(generic.DetailView):
     model = Pomodoro
     template_name = 'Pomodoro/detail.html'
+
+class TagView(generic.ListView):
+    template_name = 'Pymodoro/tag.html'
+    context_object_name = 'pomodoro_list'
+
+    def get_queryset(self):
+        # Return the pomodoros from the current user
+        return Pomodoro.objects.filter(user=self.request.user, tag=self.request.GET['tag'])
+
 
 def start(request):
     if (request.user.is_authenticated()):

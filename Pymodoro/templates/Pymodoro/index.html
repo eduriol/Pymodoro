@@ -13,9 +13,7 @@
     </p>
     <ul>
     {% for pomodoro in today_pomodoro_list %}
-        <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro }}</a></li>
+        <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro.init_time.time}} - {{ pomodoro.end_time.time }}</a> in <a href="{% url 'Pymodoro:tag' pomodoro.tag %}">{{ pomodoro.tag}}</a></li>
     {% endfor %}
     </ul>
-{% else %}
-    <p>No pomodoros created today.</p>
 {% endif %}
