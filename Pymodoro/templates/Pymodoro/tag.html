@@ -1,6 +1,9 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if pomodoro_list %}
+    <p>
+        You have completed {{ pomodoro_list|length }} pomodoro{{ pomodoro_list|length|pluralize }} with this tag.
+    </p>
     <ul>
     {% for pomodoro in pomodoro_list %}
         <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro.init_time }} - {{ pomodoro.end_time }}</a></li>

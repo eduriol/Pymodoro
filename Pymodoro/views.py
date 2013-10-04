@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_list_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -18,16 +18,20 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Pomodoro
-    template_name = 'Pomodoro/detail.html'
+    template_name = 'Pymodoro/detail.html'
 
-class TagView(generic.ListView):
-    template_name = 'Pymodoro/tag.html'
-    context_object_name = 'pomodoro_list'
+#class TagView(generic.ListView):
+#    template_name = 'Pymodoro/tag.html'
+#    #queryset =
+#    context_object_name = 'pomodoro_list'
+#
+#    def get_queryset(self):
+#        # Return the pomodoros from the current user
+#        return Pomodoro.objects.filter(user=self.request.user, tag=)
 
-    def get_queryset(self):
-        # Return the pomodoros from the current user
-        return Pomodoro.objects.filter(user=self.request.user, tag=self.request.GET['tag'])
-
+def tag(request, tag):
+    pomodoro_list = get_list_or_404(Pomodoro, user=request.user, tag=tag)
+    return render(request, 'Pymodoro/tag.html', {'pomodoro_list': pomodoro_list})
 
 def start(request):
     if (request.user.is_authenticated()):
