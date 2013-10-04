@@ -20,15 +20,6 @@ class DetailView(generic.DetailView):
     model = Pomodoro
     template_name = 'Pymodoro/detail.html'
 
-#class TagView(generic.ListView):
-#    template_name = 'Pymodoro/tag.html'
-#    #queryset =
-#    context_object_name = 'pomodoro_list'
-#
-#    def get_queryset(self):
-#        # Return the pomodoros from the current user
-#        return Pomodoro.objects.filter(user=self.request.user, tag=)
-
 def tag(request, tag):
     pomodoro_list = get_list_or_404(Pomodoro, user=request.user, tag=tag)
     return render(request, 'Pymodoro/tag.html', {'pomodoro_list': pomodoro_list})
