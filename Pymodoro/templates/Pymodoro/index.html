@@ -7,10 +7,11 @@
 <input type="submit" value="Start pomodoro" />
 </form>
 
+<p>
+    You have completed {{ today_pomodoro_list|length }} pomodoro{{ today_pomodoro_list|length|pluralize }} so far today.
+</p>
+
 {% if today_pomodoro_list %}
-    <p>
-        You have completed {{ today_pomodoro_list|length }} pomodoro{{ today_pomodoro_list|length|pluralize }} so far today.
-    </p>
     <ul>
     {% for pomodoro in today_pomodoro_list %}
         <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro.init_time.time}} - {{ pomodoro.end_time.time }}</a> in  <a href="{% url 'Pymodoro:tag' pomodoro.tag %}">{{ pomodoro.tag }}</a></li>
