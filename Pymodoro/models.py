@@ -5,6 +5,7 @@ import datetime
 from operator import attrgetter
 
 class Pomodoro(models.Model):
+
     user = models.ForeignKey(User)
     tag = models.CharField(max_length=200)
     end_time = models.DateTimeField("end time")
@@ -22,6 +23,7 @@ class Pomodoro(models.Model):
     is_from_today.short_description = 'is from today?'
 
 class PomodoroManager(models.Manager):
+
     def are_from_today(self, user):
         result_list = []
         for p in Pomodoro.objects.all():
