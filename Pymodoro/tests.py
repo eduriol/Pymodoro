@@ -1,7 +1,10 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.utils.timezone import utc
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.test.client import Client
+from django.http import HttpRequest
 
 from Pymodoro.models import Pomodoro, PomodoroManager
 
@@ -11,7 +14,20 @@ def create_user(username='john_doe'):
     return User.objects.create(username=username)
 
 def create_pomodoro(user, end_time, tag='foo'):
-        return Pomodoro.objects.create(user=user, end_time=end_time, tag=tag)
+    return Pomodoro.objects.create(user=user, end_time=end_time, tag=tag)
+
+def login_user(user):
+    request = HttpRequest()
+    username = user.username
+    password = user.password
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+        else:
+            print("Disabled account.")
+    else:
+        print("Error in login.\n")
 
 class PomodoroMethodTests(unittest.TestCase):
 
@@ -130,6 +146,11 @@ class PomodoroManagerMethodTests(unittest.TestCase):
 
 class PomodoroIndexViewTests(TestCase):
 
+    def setUp(self):
+        self.u1 = User.objects.create_user(username='john_doe', password='john_doe')
+        self.client.login(username='john_doe', password='john_doe')
+        self.u2 = User.objects.create(username='jane_doe')
+
     def test_index_view_with_no_pomodoros_from_anybody(self):
         """
         If no pomodoros exist, an appropriate message should be displayed.
@@ -142,74 +163,53 @@ class PomodoroIndexViewTests(TestCase):
         """
         If no pomodoros from current user exist, an appropriate message should be displayed.
         """
-        u1 = create_user('john_doe')
-        self.client.login(username='john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
         response = self.client.get(reverse('Pymodoro:index'))
         self.assertContains(response, "You have completed 0 pomodoros so far today.", status_code=200)
         self.assertQuerysetEqual(response.context['today_pomodoro_list'], [])
-        u1.delete()
-        u2.delete()
 
     def test_index_view_with_no_pomodoros_from_user_and_pomodoros_from_other_user_from_today(self):
         """
         If no pomodoros from current user exist, an appropriate message should be displayed.
         """
-        u1 = create_user('john_doe')
-        self.client.login(username='john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
         response = self.client.get(reverse('Pymodoro:index'))
         self.assertContains(response, "You have completed 0 pomodoros so far today.", status_code=200)
         self.assertQuerysetEqual(response.context['today_pomodoro_list'], [])
-        u1.delete()
-        u2.delete()
 
     def test_index_view_with_one_pomodoro_from_user_from_past_and_future_and_pomodoros_from_other_user_from_today(self):
         """
         If no pomodoros from today from current user exist, an appropriate message should be displayed.
         """
-        u1 = create_user('john_doe')
-        self.client.login(username='john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
         response = self.client.get(reverse('Pymodoro:index'))
         self.assertContains(response, "You have completed 0 pomodoros so far today.", status_code=200)
         self.assertQuerysetEqual(response.context['today_pomodoro_list'], [])
-        u1.delete()
-        u2.delete()
 
     def test_index_view_with_one_pomodoro_from_user_from_today_and_pomodoros_from_other_user_from_today(self):
         """
         If a pomodoro from today from current user exists, an appropriate message should be displayed.
         """
-        u1 = create_user('john_doe')
-        self.client.login(username='john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
         response = self.client.get(reverse('Pymodoro:index'))
         self.assertContains(response, "You have completed 1 pomodoro so far today.", status_code=200)
         self.assertEqual(len(response.context['today_pomodoro_list']), 1)
-        u1.delete()
-        u2.delete()
 
     def test_index_view_with_more_than_one_pomodoro_from_user_from_today_and_pomodoros_from_other_user_from_today(self):
         """
         If pomodoros from today from current user exist, an appropriate message should be displayed.
         """
-        u1 = create_user('john_doe')
-        self.client.login(username='john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
         response = self.client.get(reverse('Pymodoro:index'))
         self.assertContains(response, "You have completed 2 pomodoros so far today.", status_code=200)
         self.assertEqual(len(response.context['today_pomodoro_list']), 2)
-        u1.delete()
-        u2.delete()
+
+    def tearDown(self):
+        self.u1.delete()
+        self.u2.delete()
