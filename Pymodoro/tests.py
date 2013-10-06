@@ -228,6 +228,13 @@ class PomodoroTagViewTests(TestCase):
         response = self.client.get(reverse('Pymodoro:tag', args=('foo',)))
         self.assertEqual(response.status_code, 404)
 
+    def test_tag_view_of_an_empty_tag(self):
+        """
+        The tag view of an empty tag should return a 404 not found.
+        """
+        response = self.client.get(reverse('Pymodoro:tag', args=('',)))
+        self.assertEqual(response.status_code, 404)
+
     def test_detail_view_of_an_existent_tag_from_other_user(self):
         """
         The tag view of a tag from other user should return a 404 not found.

@@ -3,5 +3,6 @@ a {
 }
 
 body {
-    background: white url("images/background.png");
+    background: url("images/tomato.png") no-repeat left bottom;
+    background-color: #d9eece;
 }

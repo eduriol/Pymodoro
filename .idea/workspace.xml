@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ea3d12a-6d44-4d0c-a809-ac8926d2719b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Pymodoro/static/Pymodoro/images/background.png" />
-      <change type="DELETED" beforePath="C:\Users\eduriol\PycharmProjects\Pymodoro\Pymodoro\static\Pymodoro\images\background.gif" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Pymodoro/static/Pymodoro/images/tomato.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pymodoro/static/Pymodoro/style.css" afterPath="$PROJECT_DIR$/Pymodoro/static/Pymodoro/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pymodoro/tests.py" afterPath="$PROJECT_DIR$/Pymodoro/tests.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pymodoro/urls.py" afterPath="$PROJECT_DIR$/Pymodoro/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MyProject.iws" />
@@ -19,12 +20,13 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/MyProject$Test__Pymodoro_PomodoroStartViewTests.coverage" NAME="Test: Pymodoro.PomodoroStartViewTests Coverage Results" MODIFIED="1381073897395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/MyProject$Django_tests_for_Pymodoro_app.coverage" NAME="Django tests for Pymodoro app Coverage Results" MODIFIED="1381070020477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MyProject$Django_tests_for_Pymodoro_app.coverage" NAME="Django tests for Pymodoro app Coverage Results" MODIFIED="1381087828128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MyProject$Unnamed.coverage" NAME="Django tests for Pymodoro app Coverage Results" MODIFIED="1380911425173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MyProject$Test__Pymodoro.coverage" NAME="Test: Pymodoro Coverage Results" MODIFIED="1380909743772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/MyProject$Test__Pymodoro_PomodoroTagViewTests_test_detail_view_of_an_existent_tag_from_logged_user.coverage" NAME="Test: Pymodoro.PomodoroTagViewTests.test_detail_view_of_an_existent_tag_from_logged_user Coverage Results" MODIFIED="1381069000556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/MyProject$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1380909512127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MyProject$Test__Pymodoro_PomodoroTagViewTests_test_tag_view_of_an_empty_tag.coverage" NAME="Test: Pymodoro.PomodoroTagViewTests.test_tag_view_of_an_empty_tag Coverage Results" MODIFIED="1381087819017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/MyProject$Unittests_in_C__Users_eduriol_PycharmProjects_Pymodoro.coverage" NAME="Unittests in C:\Users\eduriol\PycharmProjects\Pymodoro Coverage Results" MODIFIED="1380973131466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MyProject$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1380909512127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MyProject$Test__Pymodoro_PomodoroTagViewTests_test_detail_view_of_an_existent_tag_from_logged_user.coverage" NAME="Test: Pymodoro.PomodoroTagViewTests.test_detail_view_of_an_existent_tag_from_logged_user Coverage Results" MODIFIED="1381069000556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="C:\Users\eduriol\PycharmProjects\Pymodoro" />
@@ -38,10 +40,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pymodoro/templates/Pymodoro/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="173" selection-start="809" selection-end="879" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="612">
+            <state line="22" column="173" selection-start="809" selection-end="879" vertical-scroll-proportion="0.59177214" vertical-offset="0" max-vertical-offset="632">
               <folding />
             </state>
           </provider>
@@ -50,7 +52,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pymodoro/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="48" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+            <state line="7" column="29" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
               <folding />
             </state>
           </provider>
@@ -68,10 +70,8 @@
       <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pymodoro/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="284" column="51" selection-start="14045" selection-end="14045" vertical-scroll-proportion="0.0" vertical-offset="4353" max-vertical-offset="4998">
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
+            <state line="230" column="23" selection-start="11348" selection-end="11348" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4998">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,7 +79,7 @@
       <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://C:/Python27/Lib/site-packages/django/test/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="509" column="8" selection-start="19065" selection-end="19065" vertical-scroll-proportion="0.0" vertical-offset="8653" max-vertical-offset="9928">
+            <state line="509" column="8" selection-start="19065" selection-end="19065" vertical-scroll-proportion="0.0" vertical-offset="8653" max-vertical-offset="10047">
               <folding />
             </state>
           </provider>
@@ -94,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pymodoro/static/Pymodoro/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="48" selection-start="80" selection-end="80" vertical-scroll-proportion="0.12917933" vertical-offset="0" max-vertical-offset="658">
+            <state line="5" column="16" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
               <folding />
             </state>
           </provider>
@@ -106,7 +106,7 @@
       <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pymodoro/templates/Pymodoro/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="173" selection-start="289" selection-end="359" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="204">
+            <state line="6" column="173" selection-start="289" selection-end="359" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="204">
               <folding />
             </state>
           </provider>
@@ -124,7 +124,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pymodoro/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="9" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+            <state line="27" column="4" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
               <folding />
             </state>
           </provider>
@@ -154,15 +154,15 @@
         <option value="$PROJECT_DIR$/MyProject/settings.py" />
         <option value="$PROJECT_DIR$/MyProject/urls.py" />
         <option value="$PROJECT_DIR$/Pymodoro/templates/Pymodoro/start.html" />
-        <option value="$PROJECT_DIR$/Pymodoro/urls.py" />
         <option value="C:/Python27/Lib/site-packages/django/utils/timezone.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/datetime.py" />
         <option value="$PROJECT_DIR$/Pymodoro/models.py" />
         <option value="$PROJECT_DIR$/Pymodoro/views.py" />
-        <option value="$PROJECT_DIR$/Pymodoro/tests.py" />
         <option value="$PROJECT_DIR$/Pymodoro/templates/Pymodoro/index.html" />
         <option value="$PROJECT_DIR$/Pymodoro/templates/Pymodoro/tag.html" />
         <option value="$PROJECT_DIR$/Pymodoro/templates/Pymodoro/detail.html" />
+        <option value="$PROJECT_DIR$/Pymodoro/tests.py" />
+        <option value="$PROJECT_DIR$/Pymodoro/urls.py" />
         <option value="$PROJECT_DIR$/Pymodoro/static/Pymodoro/style.css" />
       </list>
     </option>
@@ -218,6 +218,56 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pymodoro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pymodoro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pymodoro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pymodoro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pymodoro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pymodoro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -226,14 +276,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="304" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="304" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="308" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="308" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="305" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="982" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="977" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="982" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="303" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="297" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -306,6 +356,28 @@
       <module name="MyProject" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="TARGET" value="Pymodoro.PomodoroStartViewTests" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Test: Pymodoro.PomodoroTagViewTests.test_tag_view_of_an_empty_tag" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="MyProject" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="Pymodoro.PomodoroTagViewTests.test_tag_view_of_an_empty_tag" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
@@ -398,7 +470,27 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="MyProject" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
@@ -424,27 +516,7 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="MyProject" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -562,17 +634,19 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Django server.MyProject" />
       <item index="1" class="java.lang.String" itemvalue="Django tests.Django tests for Pymodoro app" />
       <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in C:\Users\eduriol\PycharmProjects\Pymodoro" />
       <item index="3" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroTagViewTests.test_detail_view_of_an_existent_tag_from_logged_user" />
       <item index="4" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroStartViewTests" />
+      <item index="5" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroTagViewTests.test_tag_view_of_an_empty_tag" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroStartViewTests" />
-        <item index="1" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroTagViewTests.test_detail_view_of_an_existent_tag_from_logged_user" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroTagViewTests.test_tag_view_of_an_empty_tag" />
+        <item index="1" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroStartViewTests" />
+        <item index="2" class="java.lang.String" itemvalue="Django tests.Test: Pymodoro.PomodoroTagViewTests.test_detail_view_of_an_existent_tag_from_logged_user" />
       </list>
     </recent_temporary>
   </component>
@@ -668,20 +742,23 @@
       <created>1381076654809</created>
       <updated>1381076654809</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Background changed">
+      <created>1381076992246</created>
+      <updated>1381076992246</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1060" extended-state="0" />
-    <editor active="false" />
+    <frame x="-4" y="-4" width="1928" height="1060" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276923" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.121875" sideWeight="0.7284345" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.121875" sideWeight="0.7284345" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39908952" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2715655" sideWeight="0.17760417" order="7" side_tool="true" content_ui="tabs" />
@@ -691,6 +768,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -718,7 +796,8 @@
     <MESSAGE value="Tests finished for detail view. Bug that allows you to view other user's pomodoros fixed." />
     <MESSAGE value="Tests for start form implemented but still failing." />
     <MESSAGE value="Style added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Style added" />
+    <MESSAGE value="Background changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Background changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,19 +834,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pymodoro/templates/Pymodoro/tag.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="82" selection-start="106" selection-end="106" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="357">
-          <folding>
-            <marker date="1381074651968" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1381074651968" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pymodoro/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="48" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding />
-        </state>
+        <state line="2" column="82" selection-start="106" selection-end="106" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="357" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pymodoro/admin.py">
@@ -777,39 +844,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pymodoro/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="284" column="51" selection-start="14045" selection-end="14045" vertical-scroll-proportion="0.0" vertical-offset="4353" max-vertical-offset="4998">
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/test/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="509" column="8" selection-start="19065" selection-end="19065" vertical-scroll-proportion="0.0" vertical-offset="8468" max-vertical-offset="9928">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pymodoro/templates/Pymodoro/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="173" selection-start="809" selection-end="879" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pymodoro/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="9" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pymodoro/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="21" selection-start="323" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
           <folding />
         </state>
       </provider>
@@ -823,14 +860,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pymodoro/templates/Pymodoro/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="173" selection-start="289" selection-end="359" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="204">
+        <state line="6" column="173" selection-start="289" selection-end="359" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="204">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pymodoro/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="21" selection-start="323" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pymodoro/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="29" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pymodoro/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="4" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pymodoro/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="230" column="23" selection-start="11348" selection-end="11348" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4998">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pymodoro/static/Pymodoro/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="48" selection-start="80" selection-end="80" vertical-scroll-proportion="0.12917933" vertical-offset="0" max-vertical-offset="658">
+        <state line="5" column="16" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pymodoro/templates/Pymodoro/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="173" selection-start="809" selection-end="879" vertical-scroll-proportion="0.59177214" vertical-offset="0" max-vertical-offset="632">
           <folding />
         </state>
       </provider>
