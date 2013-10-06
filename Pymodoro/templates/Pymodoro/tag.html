@@ -1,3 +1,7 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Pymodoro/style.css' %}" />
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if pomodoro_list %}

@@ -1,3 +1,7 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Pymodoro/style.css' %}" />
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 This pomodoro was completed between {{ pomodoro.init_time }} and {{ pomodoro.end_time }} and stored in <a href="{% url 'Pymodoro:tag' pomodoro.tag %}">{{ pomodoro.tag }}</a>
