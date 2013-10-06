@@ -182,34 +182,108 @@ class PomodoroIndexViewTests(TestCase):
 
 class PomodoroDetailViewTests(TestCase):
 
-        def setUp(self):
-            self.u1 = create_user('john_doe', 'john_doe')
-            self.client.login(username='john_doe', password='john_doe')
-            self.u2 = create_user('jane_doe', 'jane_doe')
+    def setUp(self):
+        self.u1 = create_user('john_doe', 'john_doe')
+        self.client.login(username='john_doe', password='john_doe')
+        self.u2 = create_user('jane_doe', 'jane_doe')
 
-        def test_detail_view_of_a_non_existent_pomodoro(self):
-            """
-            The detail view of a pomodoro that does not exist should return a 404 not found.
-            """
-            response = self.client.get(reverse('Pymodoro:detail', args=(1,)))
-            self.assertEqual(response.status_code, 404)
+    def test_detail_view_of_a_non_existent_pomodoro(self):
+        """
+        The detail view of a pomodoro that does not exist should return a 404 not found.
+        """
+        response = self.client.get(reverse('Pymodoro:detail', args=(1,)))
+        self.assertEqual(response.status_code, 404)
 
-        def test_detail_view_of_an_existent_pomodoro_from_other_user(self):
-            """
-            The detail view of a pomodoro from other user should return a 404 not found.
-            """
-            p = create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
-            response = self.client.get(reverse('Pymodoro:detail', args=(p.id,)))
-            self.assertEqual(response.status_code, 404)
+    def test_detail_view_of_an_existent_pomodoro_from_other_user(self):
+        """
+        The detail view of a pomodoro from other user should return a 404 not found.
+        """
+        p = create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        response = self.client.get(reverse('Pymodoro:detail', args=(p.id,)))
+        self.assertEqual(response.status_code, 404)
 
-        def test_detail_view_of_an_existent_pomodoro_from_logged_user(self):
-            """
-            The detail view of a pomodoro from logged user should display correctly.
-            """
-            p = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-            response = self.client.get(reverse('Pymodoro:detail', args=(p.id,)))
-            self.assertContains(response, p.id, status_code=200)
+    def test_detail_view_of_an_existent_pomodoro_from_logged_user(self):
+        """
+        The detail view of a pomodoro from logged user should display correctly.
+        """
+        p = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        response = self.client.get(reverse('Pymodoro:detail', args=(p.id,)))
+        self.assertContains(response, p.id, status_code=200)
 
-        def tearDown(self):
-            self.u1.delete()
-            self.u2.delete()
+    def tearDown(self):
+        self.u1.delete()
+        self.u2.delete()
+
+class PomodoroTagViewTests(TestCase):
+
+    def setUp(self):
+        self.u1 = create_user('john_doe', 'john_doe')
+        self.client.login(username='john_doe', password='john_doe')
+        self.u2 = create_user('jane_doe', 'jane_doe')
+
+    def test_tag_view_of_a_non_existent_tag(self):
+        """
+        The tag view of a tag that does not exist should return a 404 not found.
+        """
+        response = self.client.get(reverse('Pymodoro:tag', args=('foo',)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_detail_view_of_an_existent_tag_from_other_user(self):
+        """
+        The tag view of a tag from other user should return a 404 not found.
+        """
+        p = create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc), 'foo')
+        response = self.client.get(reverse('Pymodoro:tag', args=(p.tag,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_detail_view_of_an_existent_tag_from_logged_user_with_one_pomodoro(self):
+        """
+        The tag view of a tag from logged user should display correctly.
+        """
+        p = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'foo')
+        response = self.client.get(reverse('Pymodoro:tag', args=(p.tag,)))
+        self.assertContains(response, p.id, status_code=200)
+        self.assertEqual(len(response.context['pomodoro_list']), 1)
+
+    def test_detail_view_of_an_existent_tag_from_logged_user_with_two_pomodoros(self):
+        """
+        The tag view of a tag from logged user should display correctly.
+        """
+        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'foo')
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'foo')
+        response = self.client.get(reverse('Pymodoro:tag', args=(p1.tag,)))
+        self.assertContains(response, p1.id, status_code=200)
+        self.assertEqual(len(response.context['pomodoro_list']), 2)
+
+    def test_detail_view_of_an_existent_tag_from_logged_user_with_same_name_than_other_tag_from_other_user(self):
+        """
+        The tag view of a tag from logged user should display correctly.
+        """
+        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'foo')
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc), 'foo')
+        response = self.client.get(reverse('Pymodoro:tag', args=(p1.tag,)))
+        self.assertContains(response, p1.id, status_code=200)
+        self.assertEqual(len(response.context['pomodoro_list']), 1)
+
+    def tearDown(self):
+        self.u1.delete()
+        self.u2.delete()
+
+class PomodoroStartViewTests(TestCase):
+
+    def setUp(self):
+        self.u1 = create_user('john_doe', 'john_doe')
+        self.u2 = create_user('jane_doe', 'jane_doe')
+
+    def test_start_view_with_no_user_logged_in(self):
+        response = self.client.post(reverse('Pymodoro:start'), {'tag': 'foo'})
+        self.assertEqual(response.status_code, 200)
+
+    def test_start_view_with_user_logged_in(self):
+        self.client.login(username='john_doe', password='john_doe')
+        response = self.client.post(reverse('Pymodoro:start'), {'tag': 'foo'})
+        self.assertEqual(response.status_code, 200)
+
+    def tearDown(self):
+        self.u1.delete()
+        self.u2.delete()

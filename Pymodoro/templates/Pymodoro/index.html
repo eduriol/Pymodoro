@@ -1,20 +1,27 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'Pymodoro:start' %}" method="post">
-{% csrf_token %}
-<label for="tag">tag:</label>
-<input type="text" name="tag" id="tag" />
-<input type="submit" value="Start pomodoro" />
+    {% csrf_token %}
+    <label for="tag">tag:</label>
+    <input type="text" name="tag" id="tag" />
+    <input type="submit" value="Start pomodoro" />
 </form>
 
-<p>
-    You have completed {{ today_pomodoro_list|length }} pomodoro{{ today_pomodoro_list|length|pluralize }} so far today.
-</p>
+{% if user.is_authenticated %}
 
-{% if today_pomodoro_list %}
-    <ul>
-    {% for pomodoro in today_pomodoro_list %}
-        <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro.init_time.time}} - {{ pomodoro.end_time.time }}</a> in  <a href="{% url 'Pymodoro:tag' pomodoro.tag %}">{{ pomodoro.tag }}</a></li>
-    {% endfor %}
-    </ul>
+    <p>
+        You have completed {{ today_pomodoro_list|length }} pomodoro{{ today_pomodoro_list|length|pluralize }} so far today.
+    </p>
+
+    {% if today_pomodoro_list %}
+        <ul>
+        {% for pomodoro in today_pomodoro_list %}
+            <li><a href="{% url 'Pymodoro:detail' pomodoro.id %}">{{ pomodoro.init_time.time}} - {{ pomodoro.end_time.time }}</a> in  <a href="{% url 'Pymodoro:tag' pomodoro.tag %}">{{ pomodoro.tag }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    <p>
+        You are not logged in.
+    </p>
 {% endif %}
