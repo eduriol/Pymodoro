@@ -1,155 +1,121 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
 from django.utils.timezone import utc
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-from django.test.client import Client
-from django.http import HttpRequest
 
 from Pymodoro.models import Pomodoro, PomodoroManager
 
 import datetime, unittest
 
-def create_user(username='john_doe'):
-    return User.objects.create(username=username)
+def create_user(username='john_doe', password='john_doe'):
+    return User.objects.create_user(username=username, password=password)
 
 def create_pomodoro(user, end_time, tag='foo'):
     return Pomodoro.objects.create(user=user, end_time=end_time, tag=tag)
 
-def login_user(user):
-    request = HttpRequest()
-    username = user.username
-    password = user.password
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-        else:
-            print("Disabled account.")
-    else:
-        print("Error in login.\n")
-
 class PomodoroMethodTests(unittest.TestCase):
+
+    def setUp(self):
+        self.u = create_user()
 
     def test_init_time(self):
         """
         init_time() should return 25 minutes before end time.
         """
-        u = create_user()
         dt = datetime.datetime.utcnow().replace(tzinfo=utc)
-        p = create_pomodoro(u, dt)
+        p = create_pomodoro(self.u, dt)
         self.assertEqual(p.init_time(), dt - datetime.timedelta(minutes=25))
-        u.delete()
 
     def test_is_from_today_with_past_pomodoro(self):
         """
         is_from_today() should return false if the pomodoro is from before today.
         """
-        u = create_user()
-        p = create_pomodoro(u, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
+        p = create_pomodoro(self.u, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
         self.assertEqual(p.is_from_today(), False)
-        u.delete()
 
     def test_is_from_today_with_today_pomodoro(self):
         """
         is_from_today() should return true if the pomodoro is from today.
         """
-        u = create_user()
-        p = create_pomodoro(u, datetime.datetime.utcnow().replace(tzinfo=utc))
+        p = create_pomodoro(self.u, datetime.datetime.utcnow().replace(tzinfo=utc))
         self.assertEqual(p.is_from_today(), True)
-        u.delete()
 
     def test_is_from_today_with_future_pomodoro(self):
         """
         is_from_today() should return false if the pomodoro is from after today.
         """
-        u = create_user()
-        p = create_pomodoro(u, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
+        p = create_pomodoro(self.u, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
         self.assertEqual(p.is_from_today(), False)
-        u.delete()
+
+    def tearDown(self):
+        self.u.delete()
 
 class PomodoroManagerMethodTests(unittest.TestCase):
+
+    def setUp(self):
+        self.u1 = create_user('john_doe', 'john_doe')
+        self.u2 = create_user('jane_doe', 'jane_doe')
+        self.pm = PomodoroManager()
 
     def test_are_from_today_with_two_past_pomodoros_and_a_today_pomodoro_from_other_user(self):
         """
         are_from_today() should return an empty list if all pomodoros are from the past.
         """
-        u1 = create_user('john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=2))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
-        pm = PomodoroManager()
-        self.assertEqual(len(pm.are_from_today(u1)), 0)
-        u1.delete()
-        u2.delete()
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=2))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        self.assertEqual(len(self.pm.are_from_today(self.u1)), 0)
 
     def test_are_from_today_with_a_past_pomodoro_and_a_today_pomodoro_and_a_today_pomodoro_from_other_user(self):
         """
         are_from_today() should return a list with only the today's pomodoro.
         """
-        u1 = create_user('john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
-        p2 = create_pomodoro(u1, end_time=datetime.datetime.utcnow().replace(tzinfo=utc))
-        create_pomodoro(u2, end_time=datetime.datetime.utcnow().replace(tzinfo=utc))
-        pm = PomodoroManager()
-        self.assertEqual(len(pm.are_from_today(u1)), 1)
-        self.assertIn(p2, pm.are_from_today(u1))
-        u1.delete()
-        u2.delete()
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) - datetime.timedelta(days=1))
+        p2 = create_pomodoro(self.u1, end_time=datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u2, end_time=datetime.datetime.utcnow().replace(tzinfo=utc))
+        self.assertEqual(len(self.pm.are_from_today(self.u1)), 1)
+        self.assertIn(p2, self.pm.are_from_today(self.u1))
 
     def test_are_from_today_with_two_today_pomodoros_and_a_today_pomodoro_from_other_user(self):
         """
         are_from_today() should return a list with both pomodoros.
         """
-        u1 = create_user('john_doe')
-        u2 = create_user('jane_doe')
-        p1 = create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-        p2 = create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
-        pm = PomodoroManager()
-        self.assertEqual(len(pm.are_from_today(u1)), 2)
-        self.assertIn(p1, pm.are_from_today(u1))
-        self.assertIn(p2, pm.are_from_today(u1))
-        u1.delete()
-        u2.delete()
+        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        p2 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        self.assertEqual(len(self.pm.are_from_today(self.u1)), 2)
+        self.assertIn(p1, self.pm.are_from_today(self.u1))
+        self.assertIn(p2, self.pm.are_from_today(self.u1))
 
     def test_are_from_today_with_a_today_pomodoro_and_a_future_pomodoro_and_a_today_pomodoro_from_other_user(self):
         """
         are_from_today() should return a list with only the today's pomodoro.
         """
-        u1 = create_user('john_doe')
-        u2 = create_user('jane_doe')
-        p1 = create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc))
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
-        pm = PomodoroManager()
-        self.assertEqual(len(pm.are_from_today(u1)), 1)
-        self.assertIn(p1, pm.are_from_today(u1))
-        u1.delete()
-        u2.delete()
+        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        self.assertEqual(len(self.pm.are_from_today(self.u1)), 1)
+        self.assertIn(p1, self.pm.are_from_today(self.u1))
 
     def test_are_from_today_with_two_future_pomodoros_and_a_today_pomodoro_from_other_user(self):
         """
         are_from_today() should return an empty list if all pomodoros are from the future.
         """
-        u1 = create_user('john_doe')
-        u2 = create_user('jane_doe')
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
-        create_pomodoro(u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=2))
-        create_pomodoro(u2, datetime.datetime.utcnow().replace(tzinfo=utc))
-        pm = PomodoroManager()
-        self.assertEqual(len(pm.are_from_today(u1)), 0)
-        u1.delete()
-        u2.delete()
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=1))
+        create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc) + datetime.timedelta(days=2))
+        create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+        self.assertEqual(len(self.pm.are_from_today(self.u1)), 0)
+
+    def tearDown(self):
+        self.u1.delete()
+        self.u2.delete()
 
 class PomodoroIndexViewTests(TestCase):
 
     def setUp(self):
         self.u1 = User.objects.create_user(username='john_doe', password='john_doe')
         self.client.login(username='john_doe', password='john_doe')
-        self.u2 = User.objects.create(username='jane_doe')
+        self.u2 = User.objects.create_user(username='jane_doe', password='jane_doe')
 
     def test_index_view_with_no_pomodoros_from_anybody(self):
         """
@@ -213,3 +179,37 @@ class PomodoroIndexViewTests(TestCase):
     def tearDown(self):
         self.u1.delete()
         self.u2.delete()
+
+class PomodoroDetailViewTests(TestCase):
+
+        def setUp(self):
+            self.u1 = create_user('john_doe', 'john_doe')
+            self.client.login(username='john_doe', password='john_doe')
+            self.u2 = create_user('jane_doe', 'jane_doe')
+
+        def test_detail_view_of_a_non_existent_pomodoro(self):
+            """
+            The detail view of a pomodoro that does not exist should return a 404 not found.
+            """
+            response = self.client.get(reverse('Pymodoro:detail', args=(1,)))
+            self.assertEqual(response.status_code, 404)
+
+        def test_detail_view_of_an_existent_pomodoro_from_other_user(self):
+            """
+            The detail view of a pomodoro from other user should return a 404 not found.
+            """
+            p = create_pomodoro(self.u2, datetime.datetime.utcnow().replace(tzinfo=utc))
+            response = self.client.get(reverse('Pymodoro:detail', args=(p.id,)))
+            self.assertEqual(response.status_code, 404)
+
+        def test_detail_view_of_an_existent_pomodoro_from_logged_user(self):
+            """
+            The detail view of a pomodoro from logged user should display correctly.
+            """
+            p = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc))
+            response = self.client.get(reverse('Pymodoro:detail', args=(p.id,)))
+            self.assertContains(response, p.id, status_code=200)
+
+        def tearDown(self):
+            self.u1.delete()
+            self.u2.delete()

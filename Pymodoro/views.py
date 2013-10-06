@@ -20,6 +20,10 @@ class DetailView(generic.DetailView):
     model = Pomodoro
     template_name = 'Pymodoro/detail.html'
 
+    def get_queryset(self):
+        # Excludes any pomodoros from other user.
+        return Pomodoro.objects.filter(user=self.request.user)
+
 def tag(request, tag):
     pomodoro_list = get_list_or_404(Pomodoro, user=request.user, tag=tag)
     return render(request, 'Pymodoro/tag.html', {'pomodoro_list': pomodoro_list})
