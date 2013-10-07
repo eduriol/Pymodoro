@@ -272,6 +272,15 @@ class PomodoroTagViewTests(TestCase):
         self.assertContains(response, p1.id, status_code=200)
         self.assertEqual(len(response.context['pomodoro_list']), 1)
 
+    def test_detail_view_of_an_existent_tag_from_logged_user_with_a_written_accent(self):
+        """
+        The tag view of a tag with a written accent from current user should display correctly.
+        """
+        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'fóó'.decode())
+        response = self.client.get(reverse('Pymodoro:tag', args=(p1.tag,)))
+        self.assertContains(response, p1.id, status_code=200)
+        self.assertEqual(len(response.context['pomodoro_list']), 1)
+
     def tearDown(self):
         self.u1.delete()
         self.u2.delete()

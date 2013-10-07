@@ -6,6 +6,6 @@ urlpatterns = patterns('',
     #url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^$', views.index, name='index'),
     url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
-    url(r'^tag/(?P<tag>[a-z]*)/$', views.tag, name='tag'),
+    url(r'^tag/(?P<tag>[A-Za-zÁ-Úá-ú]*)/$', views.tag, name='tag'),
     #url(r'^start/$', views.start, name='start'),
 )
