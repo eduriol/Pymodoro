@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 import datetime
 from operator import attrgetter
 
+
 class Pomodoro(models.Model):
 
     user = models.ForeignKey(User)
@@ -21,6 +22,7 @@ class Pomodoro(models.Model):
     is_from_today.admin_order_field = 'end_time'
     is_from_today.boolean = True
     is_from_today.short_description = 'is from today?'
+
 
 class PomodoroManager(models.Manager):
 

@@ -4,11 +4,24 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'Pymodoro:start' %}" method="post">
+<form action="{% url 'Pymodoro:index' %}" method="post">
     {% csrf_token %}
-    <label for="tag">tag:</label>
-    <input type="text" name="tag" id="tag" />
-    <input type="submit" value="Start pomodoro" />
+    <table>
+        <tr>
+            <td>{{ form.non_field_errors }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.tag }}</td>
+            <td>
+                {% if form.tag.errors %}
+                    {% for error in form.tag.errors %}
+                        <strong>{{ error|escape }}</strong>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td><input type="submit" value="Start pomodoro" /></td>
+        </tr>
+    </table>
 </form>
 
 {% if user.is_authenticated %}

@@ -275,22 +275,3 @@ class PomodoroTagViewTests(TestCase):
     def tearDown(self):
         self.u1.delete()
         self.u2.delete()
-
-class PomodoroStartViewTests(TestCase):
-
-    def setUp(self):
-        self.u1 = create_user('john_doe', 'john_doe')
-        self.u2 = create_user('jane_doe', 'jane_doe')
-
-    def test_start_view_with_no_user_logged_in(self):
-        response = self.client.post(reverse('Pymodoro:start'), {'tag': 'foo'})
-        self.assertEqual(response.status_code, 200)
-
-    def test_start_view_with_user_logged_in(self):
-        self.client.login(username='john_doe', password='john_doe')
-        response = self.client.post(reverse('Pymodoro:start'), {'tag': 'foo'})
-        self.assertEqual(response.status_code, 200)
-
-    def tearDown(self):
-        self.u1.delete()
-        self.u2.delete()
