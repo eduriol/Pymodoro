@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from django.contrib.auth.models import User
 from django.utils.timezone import utc
 from django.core.urlresolvers import reverse
@@ -276,7 +278,7 @@ class PomodoroTagViewTests(TestCase):
         """
         The tag view of a tag with a written accent from current user should display correctly.
         """
-        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'fóó'.decode())
+        p1 = create_pomodoro(self.u1, datetime.datetime.utcnow().replace(tzinfo=utc), 'fÓóÖ')
         response = self.client.get(reverse('Pymodoro:tag', args=(p1.tag,)))
         self.assertContains(response, p1.id, status_code=200)
         self.assertEqual(len(response.context['pomodoro_list']), 1)
