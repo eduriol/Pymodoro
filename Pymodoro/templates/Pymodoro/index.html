@@ -12,14 +12,12 @@
         </tr>
         <tr>
             <td>{{ form.tag }}</td>
-            <td>
-                {% if form.tag.errors %}
-                    {% form.tag.widget.attrs['class'] = "field_error" %}
+            <td {% if field.errors %}class="field_error"{% endif %}>
+            {% if form.tag.errors %}
                     {% for error in form.tag.errors %}
-                        form.fields[field.name].widget.attrs['class'] = "field_error"
-                        <strong>{{ error|escape }}</strong>
+                        {{ error }}
                     {% endfor %}
-                {% endif %}
+            {% endif %}
             </td>
             <td><input type="submit" value="Start pomodoro" /></td>
         </tr>

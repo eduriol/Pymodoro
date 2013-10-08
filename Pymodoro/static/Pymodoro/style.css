@@ -7,6 +7,6 @@ body {
     background-color: #d9eece;
 }
 
-field_error {
+.field_error {
     color: red;
 }
