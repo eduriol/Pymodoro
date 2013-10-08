@@ -14,7 +14,9 @@
             <td>{{ form.tag }}</td>
             <td>
                 {% if form.tag.errors %}
+                    {% form.tag.widget.attrs['class'] = "field_error" %}
                     {% for error in form.tag.errors %}
+                        form.fields[field.name].widget.attrs['class'] = "field_error"
                         <strong>{{ error|escape }}</strong>
                     {% endfor %}
                 {% endif %}
