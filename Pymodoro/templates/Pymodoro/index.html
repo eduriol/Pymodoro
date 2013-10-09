@@ -4,33 +4,29 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'Pymodoro:index' %}" method="post">
-    {% csrf_token %}
-    <table>
-        <tr>
-            <td>{{ form.non_field_errors }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.tag }}</td>
-            {% if form.tag.errors %}
-            <td class="field_error">
-                {% for error in form.tag.errors %}
-                    {{ error }}
-                {% endfor %}
-
-            </td>
-            {% endif %}
-            <td><input type="submit" value="Start pomodoro" /></td>
-        </tr>
-    </table>
-</form>
-
 {% if user.is_authenticated %}
-
+    <form action="{% url 'Pymodoro:index' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.non_field_errors }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.tag }}</td>
+                {% if form.tag.errors %}
+                    <td class="field_error">
+                        {% for error in form.tag.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </td>
+                {% endif %}
+                <td><input type="submit" value="Start pomodoro" /></td>
+            </tr>
+        </table>
+    </form>
     <p>
         You have completed {{ today_pomodoro_list|length }} pomodoro{{ today_pomodoro_list|length|pluralize }} so far today.
     </p>
-
     {% if today_pomodoro_list %}
         <ul>
         {% for pomodoro in today_pomodoro_list %}
@@ -39,7 +35,9 @@
         </ul>
     {% endif %}
 {% else %}
-    <p>
-        You are not logged in.
-    </p>
+    <form action="{% url 'Pymodoro:index' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Login" />
+    </form>
 {% endif %}
