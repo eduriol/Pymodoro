@@ -5,6 +5,9 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if user.is_authenticated %}
+    <div>
+        Hi, {{ user.username }} | <a href="{% url 'Pymodoro:logout' %}">logout</a>
+    </div>
     <form action="{% url 'Pymodoro:index' %}" method="post">
         {% csrf_token %}
         <table>

@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.views import generic
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 import time
 
@@ -29,7 +29,7 @@ def index(request):
         return render(request, 'Pymodoro/index.html', {'form': form, 'today_pomodoro_list': today_pomodoro_list})
     else:
         if request.method == 'POST':
-            form = AuthenticationForm(request.POST)
+            form = AuthenticationForm(data=request.POST)
             if form.is_valid():
                 username = request.POST['username']
                 password = request.POST['password']
@@ -40,7 +40,6 @@ def index(request):
                 return HttpResponseRedirect(reverse('Pymodoro:index'))
         else:
             form = AuthenticationForm()
-
         return render(request, 'Pymodoro/index.html', {'form': form})
 
 
@@ -56,3 +55,8 @@ class DetailView(generic.DetailView):
 def tag(request, tag):
     pomodoro_list = get_list_or_404(Pomodoro, user=request.user, tag=tag)
     return render(request, 'Pymodoro/tag.html', {'pomodoro_list': pomodoro_list})
+
+
+def logoutView(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('Pymodoro:index'))

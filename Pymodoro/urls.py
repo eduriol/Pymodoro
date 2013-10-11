@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^tag/(?P<tag>[\w|\W]*)/$', views.tag, name='tag'),
-    #url(r'^start/$', views.start, name='start'),
+    url(r'^logout/$', views.logoutView, name='logout'),
 )
